@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validasi</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #eaeaea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      width: 320px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 7px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="myForm" onsubmit="return cekForm()">
+    <h2>Formulir Pendaftaran</h2>
+
+    <label>Nama</label>
+    <input type="text" id="nama" placeholder="Masukkan nama">
+
+    <label>Email</label>
+    <input type="text" id="email" placeholder="contoh: user@gmail.com">
+
+    <label>Password</label>
+    <input type="password" id="pass" placeholder="Minimal 8 karakter">
+
+    <button type="submit">Kirim</button>
+  </form>
+
+  <script>
+    function cekForm() {
+      let nama = document.getElementById("nama").value;
+      let email = document.getElementById("email").value;
+      let pass = document.getElementById("pass").value;
+
+      // jika ada yang kosong
+      if (nama === "" || email === "" || pass === "") {
+        alert("Harap isi semua kolom!");
+        return false;
+      }
+
+      // cek format email
+      let formatEmail = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(formatEmail)) {
+        alert("Format email salah!");
+        return false;
+      }
+
+      // cek panjang password
+      if (pass.length < 8) {
+        alert("Password harus lebih dari 8 karakter!");
+        return false;
+      }
+
+      alert("Form berhasil dikirim!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
